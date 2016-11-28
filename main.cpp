@@ -1,4 +1,3 @@
-#pragma once
 #include <QApplication>
 #include <QStyleFactory>
 #include "mainwindow.h"
