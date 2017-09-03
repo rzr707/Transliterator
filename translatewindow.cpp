@@ -2,7 +2,7 @@
 
     TranslateWindow::TranslateWindow(QWidget* pwgt/*=0*/) : QWidget(pwgt),
                                                             m_pTw(nullptr),
-                                                            m_bIsActive(false) //второе окно пассивное (правое)
+                                                            m_bIsActive(false) // второе окно пассивное (правое)
     {
         m_pte = new QTextEdit(this);
         m_pcb = new QComboBox(this);
@@ -46,10 +46,10 @@
         //this->setFocusProxy()
     }
 
-    //активное окно
+    // активное окно
     void TranslateWindow::setActive(bool b) {  m_bIsActive = b; }
 
-    //связать окна
+    // связать окна
     bool TranslateWindow::bindWindows(TranslateWindow* pwnd) {
 		
         m_pTw = pwnd;
@@ -57,13 +57,13 @@
 		
     }
 
-    //получить текст окна
+    // получить текст окна
     QString TranslateWindow::getText() { return m_pte->toPlainText(); }
 
-    //установить текст окна
+    // установить текст окна
     void TranslateWindow::setText(const QString& str) { m_pte->setText(str); }
 
-    //rus-eng tr
+    // rus-eng tr
     QString TranslateWindow::transliterate(const QString& str, QString strGostRus[33]) {
 		
         QString result;
@@ -77,11 +77,11 @@
                                  strGostRus[nIndex] :
                                  str.at(i) )
                                  );
-                if(str.at(i).isUpper()) { //для того, чтобы при заглавных английских не вылетало
+                if(str.at(i).isUpper()) { // для того, чтобы при заглавных английских не вылетало
                     if(nIndex != -1) {
                     result.chop(strGostRus[nIndex].length());
 
-                    /*Добавил ветвление else, если длина заменяемого символа > 1*/
+                    /* Добавил ветвление else, если длина заменяемого символа > 1 */
                     if(strGostRus[nIndex].length() == 1) {
                         result.push_back(strGostRus[nIndex].toUpper());
                         } else {
@@ -98,7 +98,7 @@
         return result;
     }
 
-    //ukr-eng tr
+    // ukr-eng tr
     QString TranslateWindow::transliterateUkr(const QString& str, QString strUkrGost[34]) {
 		
         QString result;
@@ -113,7 +113,7 @@
                                  str.at(i) )
                                 );
 
-                //заглавные буквы
+                // заглавные буквы
                 if(str.at(i).isUpper() ) {
                     if(nIndex != -1) {
                     result.chop(strUkrGost[nIndex].length());
@@ -135,7 +135,7 @@
         return result;
     }
 
-    //eng-rus tr
+    // eng-rus tr
     QString TranslateWindow::transliterateEngRus(const QString &str, QString strGost[33]) {
 		
         if(!str.trimmed().length()) {
@@ -152,12 +152,12 @@
                                );
         }
 
-        /*Две буквы переводятся вне очереди */
+        /* Две буквы переводятся вне очереди */
         result.replace(strGost[7], strRusTranslate.at(7));
         result.replace(arrGost[7], strRusTranslate.at(7).toUpper());
         result.replace(strGost[6], strRusTranslate.at(6));
         result.replace(arrGost[6], strRusTranslate.at(6).toUpper());
-        /*Метод: поочерёдно заменить все ангийские совпадения на русские*/
+        /* Метод: поочерёдно заменить все ангийские совпадения на русские*/
         for(int i = 32; i >= 0; --i) {
                 result.replace(strGost[i], strRusTranslate.at(i));
                 result.replace(arrGost[i], strRusTranslate.at(i).toUpper());
@@ -166,7 +166,7 @@
         return result;
     }
 
-    //eng-ua tr
+    // eng-ua tr
     QString TranslateWindow::transliterateEngUa(const QString &str, QString strGost[34]) {
 		
         if(!str.trimmed().length()) {
@@ -184,7 +184,7 @@
 
         QString result = str;
 
-        /*Данные буквы переводятся вне очереди*/
+        /* Данные буквы переводятся вне очереди */
 
         result.replace(strGost[29], strUkrTranslate.at(29)); //
         result.replace(arrGost[29], strUkrTranslate.at(29).toUpper()); //
@@ -202,13 +202,13 @@
         result.replace(strGost[12], strUkrTranslate.at(12)); //
         result.replace(arrGost[12], strUkrTranslate.at(12).toUpper()); //
 
-        /*Метод: поочерёдно заменить все ангийские совпадения на украинские*/
+        /* Метод: поочерёдно заменить все ангийские совпадения на украинские */
         for(int i = 33; i >= 0; --i) {
             result.replace(strGost[i], strUkrTranslate.at(i));
             result.replace(arrGost[i], strUkrTranslate.at(i).toUpper());
         }
 
-        //Если первая буква - "й", в остальных случаях "и"
+        // Если первая буква - "й", в остальных случаях "и"
         for(int i = 0; i < result.length(); ++i) {
             if(result.at(i) == strUkrTranslate.at(13)) {
                 if(result.length() >= 2 && i) {
@@ -222,13 +222,13 @@
         return result;
     }
 
-    //установить индекс стандарта транслитерации
+    // установить индекс стандарта транслитерации
     void TranslateWindow::setIndex(int nIndex) { m_pcb->setCurrentIndex(nIndex); }
 
-    //получить индекс стандарта транслитерации
+    // получить индекс стандарта транслитерации
     int TranslateWindow::getIndex() { return m_pcb->currentIndex(); }
 
-    //установить индекс стандартов транслитерации
+    // установить индекс стандартов транслитерации
     void TranslateWindow::setGostIndex(int nRusIndex, int nUkrIndex) {
 		
         m_pcbRusStd->setCurrentIndex(nRusIndex);
@@ -236,16 +236,16 @@
 		
     }
 
-     //получить индекс стандарта русской транслитерации
+     // получить индекс стандарта русской транслитерации
     int TranslateWindow::getGostIndexRus() { return m_pcbRusStd->currentIndex(); }
 
-    //получить индекс стандарта украинской транслитерации
+    // получить индекс стандарта украинской транслитерации
     int TranslateWindow::getGostIndexUkr() { return m_pcbUkrStd->currentIndex(); }
 
-    //активировать окно
+    // активировать окно
     void TranslateWindow::activate(int nIndex) { m_pcb->activated(nIndex); }
 
-    /*Слот делает видимыми только комбобокс выбранного языка */
+    /* Слот делает видимыми только комбобокс выбранного языка */
     void TranslateWindow::slotLangActivated(int nLang) {
 		
         m_pcbRusStd->setVisible(false);
@@ -269,31 +269,31 @@
 		
     }
 
-    /*Если текст в QTextEdit изменён, вызывает соотв. функцию в зависимости от выбранных языков*/
+    /* Если текст в QTextEdit изменён, вызывает соотв. функцию в зависимости от выбранных языков */
     void TranslateWindow::slotOnTextChanged() {
 		
         if(m_pTw == nullptr) {
             return;
         }
 
-        switch(m_pcb->currentIndex())//индекс комбобокса левого окна
+        switch(m_pcb->currentIndex())           // индекс комбобокса левого окна
         {
-        case 0://русский
-            switch(m_pcbRusStd->currentIndex())//индекс комбобокса госта русского
+        case 0: // русский
+            switch(m_pcbRusStd->currentIndex()) // индекс комбобокса госта русского
             {
-            case 0: //ala-lc -> eng
+            case 0: // ala-lc -> eng
                 m_pTw->m_pte->setText(transliterate(m_pte->toPlainText(), strEngTranslate));
                 break;
-            case 1: //gost 7.79-200a -> eng
+            case 1: // gost 7.79-200a -> eng
                 m_pTw->m_pte->setText(transliterate(m_pte->toPlainText(), strEngTranslateGost779));
                 break;
-            case 2: //gost 16876-71-2 -> eng
+            case 2: // gost 16876-71-2 -> eng
                 m_pTw->m_pte->setText(transliterate(m_pte->toPlainText(), strEngTranslateGost16878));
                 break;
             }
             break;
-        case 1://украинский
-            switch(m_pcbUkrStd->currentIndex())//индекс комбобокса госта украинского
+        case 1: // украинский
+            switch(m_pcbUkrStd->currentIndex())  // индекс комбобокса госта украинского
             {
             case 0: // kmu2010 -> eng
                 m_pTw->m_pte->setText(transliterateUkr(m_pte->toPlainText(), strUkrEngTranslate));
@@ -306,33 +306,33 @@
                 break;
             }
             break;
-        case 2://ангдийский
+        case 2: // английский
             switch(m_pTw->getIndex())
             {
-            case 0: //rus
+            case 0:     // rus
                 switch(m_pTw->getGostIndexRus())
                 {
-                case 0: //eng -> ALA-LC
+                case 0: // eng -> ALA-LC
                     m_pTw->m_pte->setText(transliterateEngRus(m_pte->toPlainText(), strEngTranslate));
                     break;
-                case 1: //eng -> gost 7.79-2000A
+                case 1: // eng -> gost 7.79-2000A
                     m_pTw->m_pte->setText(transliterateEngRus(m_pte->toPlainText(), strEngTranslateGost779));
                     break;
-                case 2:  //eng -> gost 16876-71-2
+                case 2: // eng -> gost 16876-71-2
                     m_pTw->m_pte->setText(transliterateEngRus(m_pte->toPlainText(), strEngTranslateGost16878));
                     break;
                 }
                 break;
-            case 1: //ukr
+            case 1:     // ukr
                 switch(m_pTw->getGostIndexUkr())
                 {
-                case 0: //eng -> kmu2010
+                case 0: // eng -> kmu2010
                     m_pTw->m_pte->setText(transliterateEngUa(m_pte->toPlainText(), strUkrEngTranslate));
                     break;
-                case 1: //eng -> bgn/pcgn 1965
+                case 1: // eng -> bgn/pcgn 1965
                     m_pTw->m_pte->setText(transliterateEngUa(m_pte->toPlainText(), strUkrEngBgnPcgn));
                     break;
-                case 2: //eng -> ukppt 1996
+                case 2: // eng -> ukppt 1996
                     m_pTw->m_pte->setText(transliterateEngUa(m_pte->toPlainText(), strUkrEngGeographical));
                     break;
                 }

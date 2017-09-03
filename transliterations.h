@@ -7,8 +7,8 @@
 
 #include <QString>
 
-//Русский язык
-static QString strEngTranslate[33]                  //ALA-LC
+// Русский язык
+static QString strEngTranslate[33]                    // ALA-LC
 =  {
 	 "a",  "b",  "v",    "g", "d", "e",
      "ё",  "zh", "z",    "i", "ĭ", "k",
@@ -18,7 +18,7 @@ static QString strEngTranslate[33]                  //ALA-LC
 	 "'",  "ė",  "iu",   "ia"
    };
 
-static QString strEngTranslateGost779[33]                  //ГОСТ 7.79-2000А
+static QString strEngTranslateGost779[33]             // ГОСТ 7.79-2000А
 =  {
 	 "a", "b", "v", "g", "d", "e",
      "ё", "ž", "z", "i", "j", "k",
@@ -28,7 +28,7 @@ static QString strEngTranslateGost779[33]                  //ГОСТ 7.79-2000�
 	 "è", "û", "â"
    };
 
-static QString strEngTranslateGost16878[33]                  //ГОСТ 16876-71-2
+static QString strEngTranslateGost16878[33]            // ГОСТ 16876-71-2
 =  { 
 	 "a",  "b",  "v",   "g",  "d",  "e",
      "jo", "zh", "z",   "i",  "jj", "k",
@@ -42,8 +42,8 @@ static QString strRusTranslate = "абвгдеёжзийклмнопрстуфх
 static QString strUkrTranslate = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя'";
 
 
-/*Украинский язык*/
-static QString strUkrEngTranslate[34] =                 //паспортная транслитерация КМУ 2010
+// Украинский язык
+static QString strUkrEngTranslate[34] =                 // паспортная транслитерация КМУ 2010
 {
     "a", "b", "v", "gh", "g", "d", "e", "ye", "zh", "z",
     "y", "i", "yi", "y", "k", "l", "m", "n", "o", "p",
@@ -51,7 +51,7 @@ static QString strUkrEngTranslate[34] =                 //паспортная �
     "'", "yu", "ya", "\""
 };
 
-static QString strUkrEngBgnPcgn[34] =                 //американская (BGN/PCGN 1965)
+static QString strUkrEngBgnPcgn[34] =                   // американская (BGN/PCGN 1965)
 {
     "a", "b", "v", "h", "g", "d", "e", "ye", "zh", "z",
     "y", "i", "yi", "y", "k", "l", "m", "n", "o", "p",
@@ -59,7 +59,7 @@ static QString strUkrEngBgnPcgn[34] =                 //американская
     "´", "yu", "ya", "\""
 };
 
-static QString strUkrEngGeographical[34] =                 //Географическая УКППТ 1996
+static QString strUkrEngGeographical[34] =              // Географическая УКППТ 1996
 {
     "a", "b", "v", "h", "g", "d", "e", "ye", "zh", "z",  //ye zh
     "y", "i", "yi", "y", "k", "l", "m", "n", "o", "p",   //yi

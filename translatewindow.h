@@ -32,7 +32,7 @@ private:
     QComboBox*       m_pcb;
     QComboBox*       m_pcbRusStd;
     QComboBox*       m_pcbUkrStd;
-    TranslateWindow* m_pTw;  //указатель на второе окно
+    TranslateWindow* m_pTw;  // указатель на второе окно
     bool             m_bIsActive;
 
 public:

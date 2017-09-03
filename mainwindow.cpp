@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget* pwgt/*= 0*/): QWidget(pwgt) {
             this,       SLOT(slotMoveSwapBtn(int, int))
             );
 
-    //layout setup
+    // layout setup
     QVBoxLayout* pMainL = new QVBoxLayout;
     QHBoxLayout* phbButtonsL = new QHBoxLayout;
     phbButtonsL->addWidget(m_pcmdSaveLtext, Qt::AlignLeft);
@@ -75,13 +75,13 @@ MainWindow::MainWindow(QWidget* pwgt/*= 0*/): QWidget(pwgt) {
 
 }
 
-//двигает кнопку вместе со слайдером
-void MainWindow::slotMoveSwapBtn(int w, int h) {
+// двигает кнопку вместе со слайдером
+void MainWindow::slotMoveSwapBtn(int w, int) {
    m_pcmdSwap->move(w, m_pcmdSwap->pos().y());
    repaint();
 }
 
-/*Слот меняет окна местами*/
+/* Слот меняет окна местами */
 void MainWindow::slotOnSwapClicked() {
 	
     qDebug() << "slotOnSwapClicked";
@@ -111,11 +111,11 @@ void MainWindow::slotOnSwapClicked() {
 
 }
 
-//Чтение из файла
+// Чтение из файла
 void MainWindow::slotOnOpenFileClicked() {
 	
     qDebug() << "slotOnOpenFileClicked";
-    //устанавливается указатель на окно, которое запросило чтение из файла:
+    // устанавливается указатель на окно, которое запросило чтение из файла:
     TranslateWindow* pWnd = (sender() == m_pcmdOpenLtext ? m_pLwnd : m_pRwnd);
     QString strFileToOpen = QFileDialog::getOpenFileName(this,
                                                          "Открыть файл..",
@@ -135,11 +135,11 @@ void MainWindow::slotOnOpenFileClicked() {
 
 }
 
-//Сохранение в файл
+// Сохранение в файл
 void MainWindow::slotOnSaveFileClicked() {
 	
     qDebug() << "slotOnSaveFileClicked";
-     //устанавливается указатель на окно, которое запросило сохранение текста в файл:
+     // устанавливается указатель на окно, которое запросило сохранение текста в файл:
     TranslateWindow* pWnd = (sender() == m_pcmdSaveLtext ? m_pLwnd : m_pRwnd);
     QString strFileToSave = QFileDialog::getSaveFileName(this,
                                                          "Сохранить в файл..",
